@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Формы</title>
+    <style>
+        body {
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            text-align: center;
+            font: italic small-caps bold 18px/30px cursive;
+        }
+        label {
+            line-height: 10px;
+        }
+        select {
+            width: 200px;
+            padding: 5px;
+        }
+        textarea {
+            height: 100px;
+            width: 250px;
+        }
+        fieldset {
+            border: 2px solid;
+        }
+        button {
+            background: #e5b5e5;
+            border: #b70fb7 2px solid;
+            height: 35px;
+            width: 110px;
+            font: italic small-caps bold 15px/25px cursive;
+        }
+        #fio {
+            background: #eec0c0;
+        }
+        #plt {
+            background: #f1ddb9;
+        }
+        #tim {
+            background: #f1f0b7;
+        }
+        #lan {
+            background: #c8f1c8;
+        }
+        #ust{
+            background: #b8efef;
+        }
+        #grt {
+            background: #bdd6ef;
+        }
+    </style>
+</head>
+<body>
+
+<form method="post" action="">
+    <div id="fio">
+        <fieldset>
+            <h3>ФИО</h3>
+            <label>Имя:</label>
+            <input type="text" name="name"><br>
+            <label>Фамилия:</label>
+            <input type="text" name="last_name"><br>
+        </fieldset>
+    </div><hr>
+
+    <div id="plt">
+        <fieldset>
+            <h3>Платформа</h3>
+            <input type="radio" id="1" name="scales">
+            <label for="1">Windows</label><br>
+            <input type="radio" id="2" name="scales">
+            <label for="2">Unix</label><br>
+            <input type="radio" id="3" name="scales">
+            <label for="3">Android</label><br>
+        </fieldset>
+    </div><hr>
+
+    <div id="tim">
+        <fieldset>
+            <h3>Время занятий</h3>
+            <select>
+                <option disabled selected></option>
+                <option>утро</option>
+                <option>день</option>
+                <option>вечер</option>
+            </select>
+        </fieldset>
+    </div><hr>
+
+    <div id="lan">
+        <fieldset>
+            <h3>Языки</h3>
+            <select size="3" multiple>
+                <option>c++</option>
+                <option>python</option>
+                <option>java</option>
+                <option>pascal</option>
+            </select>
+        </fieldset>
+    </div><hr>
+
+    <div id="ust">
+        <fieldset>
+            <h3>Устройства</h3>
+            <input type="radio" id="1" name="scales">
+            <label for="1">Настольный ПК</label><br>
+            <input type="radio" id="2" name="scales">
+            <label for="2">Планшет</label><br>
+            <input type="radio" id="3" name="scales">
+            <label for="3">Смартфон</label><br>
+        </fieldset>
+    </div><hr>
+
+    <div id="grt">
+        <fieldset>
+            <h3>Пожелания</h3>
+            <textarea maxlength="60">я хочу работать</textarea><br>
+        </fieldset>
+    </div><hr>
+
+    <button type="submit" name="submit">Отправить</button>
+    <button type="reset" name="reset">Очистить</button>
+</form>
+
+</body>
+</html>
+
+<!--
+http://localhost:63342/my_project/form.html?_ijt=a3tqu04f1t2ddnp7gaibg8mecm&_ij_reload=RELOAD_ON_SAVE
+http://localhost:63342/my_project/form.html?name=%D0%BA%D1%83%D0%BA%D1%83&pass=12345&submit=%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BE%21
+-->

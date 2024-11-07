@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <script>
+        document.write("<table border=1 cellspacing=0>" + "<tr bgcolor='#87cefa'><th>Степень</th><th>Результат</th></tr>");
+        for (let i=0; i<=10; i++){
+            document.write("<tr>",
+                "<td width='75' height='50' align=center bgcolor='#f0f8ff'>2<sup>", i, "</sup></td>",
+                "<td width='100' height='50' align=center>", Math.pow(2, i), "</td>",
+                "</tr>"
+            )
+        }
+        document.write("</table>")
+
+        s="My_table)";
+        let i = 0;
+        while (ch=s.substr(i, 1)) {
+            document.write("<b>", ch, "</b>", " ");
+            i++;
+        }
+
+        function factorial (n) {
+            if (n == 0) {
+                return 1;
+            } else {
+                return n * factorial(n - 1);
+            }
+        }
+        /*x = window.prompt("Введите целое число");
+        if  (x === Number(x)) {
+            alert("Факториал числа " + x + " равен " + factorial(x));
+        } else {
+            alert("Вы ввели не целое число");
+        }*/
+
+        document.write("<br>")
+        function myConcat (separator) {
+            let result = "";
+            for (let i = 1; i < arguments.length; i++) {
+                result += arguments[i] + ((i === arguments.length - 1) ? "" : separator);
+            }
+            return result;
+        }
+        document.write(myConcat(" :* ", "one", "two", "three<br>"));
+
+        var aNumber = 100;
+        function tweak() {
+            var newThing = 0;
+            newThing = aNumber;
+            aNumber = 42;
+            if (newThing === 100) {
+                var aNumber;
+                aNumber = 123;
+                newThing = aNumber;
+            }
+            return newThing;
+        }
+        document.write(tweak());
+        document.write(aNumber);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
