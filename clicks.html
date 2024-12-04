@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clicks</title>
+    <script>
+        function showEventType(event) {
+            alert(event.type);
+        }
+        function showEventTypeWithRoots(event) {
+            let ev = "Произошло событие: " + event.type + "<br>";
+            for (let e in event) {
+                ev += e + ": " + event[e] + "<br>";
+            }
+            let newWindow = window.open("", "_blank");
+            newWindow.document.write("<html><head><title>Details</title></head><body>");
+            newWindow.document.write(ev);
+            newWindow.document.write("</body></html>");
+            newWindow.document.close();
+        }
+
+        window.onload = function(event) {
+            let elem = document.getElementById("par");
+            elem.onclick = showEventTypeWithRoots;
+            elem.onmousedown = showEventTypeWithRoots;
+        }
+
+        document.onclick = clickon;
+        function clickon(event) {
+            alert("Айди элемента и название тега: " + event.target.id + ", " + event.target.tagName);
+
+        }
+        /*document.addEventListener("click", function (event) {
+            alert("Я из первого слушателя")
+        }, false);
+        document.addEventListener("click", function (event) {
+            alert("Я из второго слушателя")
+        }, false);*/
+
+        /*function f(event) {
+            if (event.ctrlKey) {
+                return false;
+            }
+        }*/
+
+        document.onclick = function (event) {
+            if (event.target.tagName === "A") {
+                event.preventDefault();
+            }
+        }
+
+        function c1(event) {
+            let elem = document.getElementById("c");
+            let t = document.getElementById("text");
+            elem.onclick = function () {t.value += "Клик\n"};
+            elem.ondblclick = function () {t.value += "Двойной клик\n"};
+            elem.oncontextmenu = function () {t.value += "Контекстное меню\n"};
+            elem.onmousedown = function () {t.value += "Кнопка нажата\n"};
+            elem.onmouseup = function () {t.value += "Кнопка отпущена\n"};
+        }
+    </script>
+</head>
+<body id="body" onclick="alert('Не надо щелкать!');"> <!---->
+    <h1 id="заголовок" onclick="alert(this.id)">Привет!</h1>
+    <p id="текст" onclick="alert(this.id)">Это простой пример, <b id="жирный" onclick="alert(this.id)">ну очень простой</b> пример.</p>
+    <br>
+    <p id="par">Проверяем свойства</p>
+    <br>
+    <form name="form1">
+        <input type="button" name="button1" value="Узнай первое событие">
+        <script>
+            document.getElementsByName("button1")[0].onmousedown = showEventType;
+        </script>
+    </form>
+    <br>
+    <form name="form2">
+        <input type="button" name="button2" value="Узнай второе событие" onmouseup = "showEventType(event)";>
+    </form>
+    <br>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <br>
+    <a href="https://github.com/" onclick="return f(event)">сылочка</a>
+    <br><br><hr>
+
+    <button id="c" onclick="return c1(event)" ondblclick="return c1(event)" oncontextmenu="return c1(event)" onmousedown="return c1(event)" onmouseup="return c1(event)">Кнопка</button>
+    <br>
+    <textarea id="text" cols="60" rows="15"></textarea>
+    <script>
+        let b = ["black", "violet", "white"];
+        //b.forEach(el => alert(el));
+        function eventMouseOver() {
+            let divs = document.getElementsByTagName("div");
+            Array.from(divs).forEach(function (el) {
+                let a = 0;
+                el.onmouseover = function (event) {
+                    el.style.backgroundColor = b[a % 3];
+                    a++;
+                };
+            });
+        }
+        eventMouseOver();
+
+        document.onclick = function (event) {
+            if (event.ctrlKey) {
+                alert("Прив кд чд");
+            }
+        }
+    </script>
+</body>
+</html>
