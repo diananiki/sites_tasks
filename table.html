@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cats</title>
+    <style>
+        table, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        div {
+            display: flex;
+            justify-content: space-between;
+        }
+        img {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        img.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <p id="paragraph"></p>
+
+    <hr>
+    <div>
+        <img src="images/cute-cat-sushi-salmon-cartoon-icon-illustration_138676-2318.jpg" height=300 width=300>
+        <img src="images/cute-cat-sushi-salmon-cartoon-vector-illustration_138676-2232.jpg" height=300 width=300>
+        <img src="images/cute-cat-sushi-salmon-cartoon-vector-illustration_138676-2231.jpg" height=300 width=300>
+        <img src="images/cute-cat-sushi-salmon-cartoon-vector-illustration_138676-2230.jpg" height=300 width=300>
+    </div>
+    <hr>
+
+    <button id="createTable">Add table</button>
+    <button id="removeTable">Remove table</button>
+    <hr>
+    <script>
+        document.getElementsByTagName('body')[0].addEventListener('click', function () {
+            document.getElementById('paragraph').innerHTML = "I've created with <b id='bigger'>DOM</b> model";
+            document.getElementById('bigger').style.color = "red";
+        })
+
+        let images = document.querySelectorAll('img');
+        images.forEach((img) => {
+            img.addEventListener('click', () => {
+                img.classList.toggle('visible');
+            });
+        });
+
+        let ind = 1;
+        document.getElementById('createTable').addEventListener('click', function () {
+            let table = document.createElement('table');
+            let tbody = document.createElement('tbody');
+            let row = document.createElement('tr');
+            let cell1 = document.createElement('td');
+            let cell2 = cell1.cloneNode();
+            row.appendChild(cell1);
+            row.appendChild(cell2);
+            tbody.appendChild(row);
+            table.appendChild(tbody);
+            document.body.appendChild(table);
+            cell1.appendChild(document.createTextNode(ind++ + " cell"));
+            cell2.appendChild(document.createTextNode(ind++ + " cell"));
+        });
+        document.getElementById('removeTable').addEventListener('click', function () {
+            let table = document.getElementsByTagName('table')[0];
+            document.body.removeChild(table);
+        })
+    </script>
+</body>
+</html>

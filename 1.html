@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Динамический HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            background-color: lightgrey;
+            font-size: 16pt;
+            color: indianred;
+            padding: 10px;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin: 0;
+            padding: 0;
+        }
+
+        #idListOne > li {
+            cursor: pointer;
+        }
+
+        #idListOne ul {
+            display: none;
+            margin-left: 20px;
+        }
+
+        #Banner {
+            position: absolute;
+            width: 300px;
+            background-color: lightsteelblue;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        // Функция для переключения видимости вложенного списка
+        function toggleListItem(target) {
+            const subList = target.querySelector("ul");
+            if (subList) {
+                subList.style.display = subList.style.display === "none" ? "block" : "none";
+            }
+        }
+
+        // Функция для изменения цвета текста при наведении
+        function flashMe(target, color) {
+            target.style.color = color;
+        }
+
+        // Настройка анимации движения элемента
+        let t = 0;
+        const dt = 0.1;
+        let x, y, r;
+
+        function startGlide() {
+            const bodyWidth = document.body.offsetWidth;
+            const bodyHeight = document.body.offsetHeight;
+
+            x = bodyWidth / 2;
+            y = bodyHeight / 2;
+            r = (3 * bodyHeight) / 5;
+
+            setInterval(glide, 100);
+        }
+
+        function glide() {
+            const banner = document.getElementById("Banner");
+            t += dt;
+
+            banner.style.left = x + r * Math.sin(t) + "px";
+            banner.style.top = y + r * Math.cos(t) + "px";
+        }
+
+        // Обработчики событий для элементов списка
+        document.addEventListener("DOMContentLoaded", () => {
+            const listItems = document.querySelectorAll("#idListOne > li");
+            listItems.forEach(item => {
+                item.addEventListener("click", () => toggleListItem(item));
+                item.addEventListener("mouseover", () => flashMe(item, "red"));
+                item.addEventListener("mouseout", () => flashMe(item, "black"));
+            });
+
+            // Запуск движения элемента
+            startGlide();
+        });
+    </script>
+</head>
+<body>
+<h1>Раскрывающийся список</h1>
+<ul id="idListOne">
+    <li title="Щелкни, чтобы раскрыть">
+        Один
+        <ul>
+            <li title="Файл А">A</li>
+            <li title="Файл Б">Б</li>
+        </ul>
+    </li>
+    <li title="Нераскрывающийся список">Два</li>
+    <li title="Нераскрывающийся список">Три</li>
+</ul>
+
+<hr>
+
+<h1>Движущийся элемент</h1>
+<p>Динамический HTML позволяет программно менять положение элемента!</p>
+<div id="Banner">Добро пожаловать на страницу динамического HTML!</div>
+</body>
+</html>
